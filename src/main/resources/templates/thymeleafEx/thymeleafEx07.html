@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      layout:decorate="~{layouts/layout1}">
+<!-- layouts 폴더 아래에 있는 layout1.html을 적용하기 위해서 네임스페이스 추가-->
+
+  <div layout:fragment="content">
+    <!--  레이아웃 조각 생성 :  content 이름으로 활용 -->
+    <!--   layouts.layout1.html에 content부분을 치환하여 사용  -->
+    <!--   <div layout:fragment="content" class="content">에 들어가는 영역 -->
+    본문 영역 입니다.
+  </div>
+
+</html>

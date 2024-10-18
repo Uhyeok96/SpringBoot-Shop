@@ -31,7 +31,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     compileOnly 'org.projectlombok:lombok'
@@ -42,6 +42,12 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2' // 테스트용 데이터베이스
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+    // 타입리프 용 코드
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // 레이아웃 기능을 위한 라이브러리 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" html 추가 필수
+    // 공통적으로 적용되는 레이아웃을 미리 만들고 현재 작성중인 페이지만 레이아웃에 끼워 넣으면 됨.
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
 
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
 

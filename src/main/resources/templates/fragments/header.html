@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--179 시큐리티 적용 코드 -->
 
 <div th:fragment="header">
     <!--   다른페이지에 포함시킬 영역을 th:fragment 로 선언    -->
@@ -15,29 +17,28 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                     <!-- ADMIN 룰을 가지고 있으면 사용 가능                   -->
                     <a class="nav-link" href="/admin/item/new">상품 등록</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                     <!-- ADMIN 룰을 가지고 있으면 사용 가능                   -->
                     <a class="nav-link" href="/admin/items">상품 관리</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <!-- 로그인 룰을 가지고 있으면 사용 가능                   -->
                     <a class="nav-link" href="/cart">장바구니</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <!-- 로그인 룰을 가지고 있으면 사용 가능                   -->
                     <a class="nav-link" href="/orders">구매이력</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="isAnonymous()">
                     <!-- 로그인 안된 룰을 가지고 있으면 사용 가능                   -->
                     <a class="nav-link" href="/members/login">로그인</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <!-- 로그인 룰을 가지고 있으면 사용 가능                   -->
-
                     <a class="nav-link" href="/members/logout">로그아웃</a>
                 </li>
             </ul>

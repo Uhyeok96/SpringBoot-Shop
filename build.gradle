@@ -45,7 +45,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2' // 테스트용 데이터베이스
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.security:spring-security-test'  // 테스트용 시큐리티 (시큐리티 코드보다 위쪽에 넣어야 충돌 안나는듯)
 
     // 타입리프 용 코드
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'

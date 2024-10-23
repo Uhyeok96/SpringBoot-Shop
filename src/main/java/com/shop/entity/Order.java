@@ -71,4 +71,36 @@ public class Order extends BaseEntity{
     // 부모가 제거될때, 부모와 연관되어있는 모든 자식 엔티티들은 고아객체가 됩니다.
     // 부모 엔티티와 자식 엔티티 사이의 연관관계를 삭제할때, 해당 자식 엔티티는 고아객체가 됩니다.
 
+    public void addOrderItem(OrderItem orderItem) {// 299 추가 (주문 상품 정보를 담아 줌)
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);   // Order 엔티티와 OrderItem 엔티티가 양방향 참조 관계이므로 orderItem 객체에도 order 객체를 세팅함
+    }
+
+    public static Order createOrder(Member member, List<OrderItem> orderItemList) { // OrderItem엔티티가 양방향 참조 관계임
+        Order order = new Order();
+        order.setMember(member);    // 상품을 주문한 회원의 정보를 셋팅
+
+        for(OrderItem orderItem : orderItemList) {  // 상품 페이지에서는 1개의 상품을 주문 하지만, 장바구니 페이지에는 한번에 여러개의 상품을 주문 함
+            order.addOrderItem(orderItem);  // 리스트로 받음 -> 주문 객체에 orderItem 객체 추가
+        }
+
+        order.setOrderStatus(OrderStatus.ORDER);    // 주문 상태를 ORDER로 셋팅
+        order.setOrderDate(LocalDateTime.now());    // 현재 주문 시간으로 셋팅
+        return order;
+    }
+
+    public int getTotalPrice() {    // 총 주문 금액을 구하는 메서드
+        int totalPrice = 0;
+        for(OrderItem orderItem : orderItems){
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    public void cancelOrder() {  // 322 주문 취소용
+        this.orderStatus = OrderStatus.CANCEL;  // 주문 상태를 취소 상태로 변경
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
 }

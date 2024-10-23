@@ -45,4 +45,22 @@ public class CartItem extends BaseEntity{
 //    add constraint FKdljf497fwm1f8eb1h8t6n50u9
 //    foreign key (item_id)
 //    references item (item_id)
+
+    public static CartItem createCartItem(Cart cart, Item item, int count) {  // 331 추가 장바구니용
+        CartItem cartItem = new CartItem();
+        cartItem.setCart(cart);
+        cartItem.setItem(item);
+        cartItem.setCount(count);
+        return cartItem;
+    }
+
+    public void addCount(int count){
+
+        this.count += count;
+    }  // 장바구니에 기존 담겨 있는 상품인데, 해당 상품을 추가한경우 누적
+
+    // 장바구니에 담겨있는 상품의 수량 변경
+    public void updateCount(int count){  // 351 추가
+        this.count = count;
+    }
 }

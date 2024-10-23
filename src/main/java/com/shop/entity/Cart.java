@@ -41,4 +41,10 @@ public class Cart extends BaseEntity{
 //    add constraint FKix170nytunweovf2v9137mx2o
 //    foreign key (member_id)
 //    references member (member_id)
+
+    public static Cart createCart(Member member){  // 331 추가 장바구니 용
+        Cart cart = new Cart();
+        cart.setMember(member);
+        return cart;
+    }
 }
